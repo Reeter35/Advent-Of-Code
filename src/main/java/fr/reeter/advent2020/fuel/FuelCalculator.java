@@ -16,8 +16,18 @@ public class FuelCalculator {
         Fuel required to launch a given module is based on its mass.
         Specifically, to find the fuel required for a module, take its mass, divide by three, round down, and subtract 2.
         */
+        /*
+        Fuel itself requires fuel just like a module - take its mass, divide by three, round down, and subtract 2.
+        However, that fuel also requires fuel, and that fuel requires fuel, and so on. Any mass that would require
+        negative fuel should instead be treated as if it requires zero fuel; the remaining mass, if any, is instead
+         handled by wishing really hard, which has no mass and is outside the scope of this calculation.
+         */
 
-        return Math.max((int)Math.floor(((double)moduleMass)/3.0) - 2, 0);
+        int fuel = (int)Math.floor(((double)moduleMass)/3.0) - 2;
+        if(fuel > 0) {
+            return fuel+fuelForModule(fuel);
+        }
+        return 0;
     }
 
     /**
