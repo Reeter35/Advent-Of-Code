@@ -1,6 +1,7 @@
 package fr.reeter.advent2020;
 
 import fr.reeter.advent2020.fuel.FuelCalculator;
+import fr.reeter.advent2020.intcode.IntCodeComputer;
 import fr.reeter.advent2020.intcode.IntCodeRunner;
 import fr.reeter.advent2020.modules.ModulesParser;
 import org.slf4j.Logger;
@@ -20,8 +21,11 @@ public class Runner implements ApplicationRunner {
     @Autowired
     private FuelCalculator fuelCalculator;
 
+    //@Autowired
+    //private IntCodeRunner intCodeRunner;
+
     @Autowired
-    private IntCodeRunner intCodeRunner;
+    private IntCodeComputer computer;
 
     @Autowired
     private ModulesParser modules;
@@ -35,10 +39,13 @@ public class Runner implements ApplicationRunner {
         logger.info("Fuel mass to take: " + fuelCalculator.fuelForAllModules(modules.getModulesAsArray()));
 
 
+        // Day 2;
         // Fix gravity values for int code computer
-        intCodeRunner.fixValue(1, 12);
-        intCodeRunner.fixValue(2, 2);
-        logger.info("IntCode computer result: " + intCodeRunner.run());
+        //intCodeRunner.fixValue(1, 12);
+        //intCodeRunner.fixValue(2, 2);
+        //logger.info("IntCode computer result: " + intCodeRunner.run());
+
+        logger.info("Computer result: " + computer.findNounAndVerb(19690720));
 
     }
 }
