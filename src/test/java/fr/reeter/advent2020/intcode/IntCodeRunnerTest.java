@@ -9,10 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @ActiveProfiles("test")
 @SpringBootTest
