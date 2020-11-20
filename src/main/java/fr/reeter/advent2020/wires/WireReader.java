@@ -35,6 +35,7 @@ public class WireReader {
     @PostConstruct
     public void init() {
         for(String wire: wireDesc) {
+            logger.info("Reading wire description: " + wire);
             wires.add(read(wire));
         }
     }

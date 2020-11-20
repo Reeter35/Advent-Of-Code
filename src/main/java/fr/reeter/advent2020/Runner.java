@@ -61,6 +61,7 @@ public class Runner implements ApplicationRunner {
         Point closest = intersectionFinder.findClosestToCentral(intersections);
         logger.info("Closest point: " + closest);
         logger.info("Distance to central: " + intersectionFinder.manhattanDistanceToCentral(closest));
+        logger.info("Minimal number of steps: " + intersectionFinder.getMinimalSteps(wires.get(0), wires.get(1)));
 
     }
 }

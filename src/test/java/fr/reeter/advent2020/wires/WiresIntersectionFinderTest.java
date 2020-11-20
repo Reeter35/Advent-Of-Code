@@ -37,4 +37,14 @@ public class WiresIntersectionFinderTest {
         int distance = intersectionFinder.manhattanDistanceToCentral(closest);
         assertThat(distance).isEqualTo(159);
     }
+
+    @Test
+    public void testMinimalSteps() {
+        List<List<Point>> wires = reader.getWires();
+        logger.info("Loaded wires: " + wires.size());
+
+
+        int steps = intersectionFinder.getMinimalSteps(wires.get(0), wires.get(1));
+        assertThat(steps).isEqualTo(610);
+    }
 }
