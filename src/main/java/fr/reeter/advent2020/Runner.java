@@ -3,6 +3,7 @@ package fr.reeter.advent2020;
 import fr.reeter.advent2020.fuel.FuelCalculator;
 import fr.reeter.advent2020.intcode.IntCodeComputer;
 import fr.reeter.advent2020.modules.ModulesParser;
+import fr.reeter.advent2020.password.PasswordHacker;
 import fr.reeter.advent2020.wires.WireReader;
 import fr.reeter.advent2020.wires.WiresIntersectionFinder;
 import org.slf4j.Logger;
@@ -38,6 +39,9 @@ public class Runner implements ApplicationRunner {
     private WireReader reader;
 
     @Autowired
+    private PasswordHacker hacker;
+
+    @Autowired
     private WiresIntersectionFinder intersectionFinder;
 
     @Override
@@ -56,12 +60,16 @@ public class Runner implements ApplicationRunner {
         // logger.info("Computer result: " + computer.findNounAndVerb(19690720));
 
         // Day 3
-        List<List<Point>> wires = reader.getWires();
+        /*List<List<Point>> wires = reader.getWires();
         List<Point> intersections = intersectionFinder.findAllIntersections(wires.get(0), wires.get(1));
         Point closest = intersectionFinder.findClosestToCentral(intersections);
         logger.info("Closest point: " + closest);
         logger.info("Distance to central: " + intersectionFinder.manhattanDistanceToCentral(closest));
-        logger.info("Minimal number of steps: " + intersectionFinder.getMinimalSteps(wires.get(0), wires.get(1)));
+        logger.info("Minimal number of steps: " + intersectionFinder.getMinimalSteps(wires.get(0), wires.get(1)));*/
+
+        // Day 4
+        List<String> passwords = hacker.findAllPasswords(273025, 767253);
+        logger.info("Number of available passwords: " + passwords.size());
 
     }
 }
