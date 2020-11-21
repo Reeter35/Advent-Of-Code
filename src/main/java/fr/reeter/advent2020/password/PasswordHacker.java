@@ -59,8 +59,35 @@ public class PasswordHacker {
             nth(pwd,1) != nth(pwd, 0)) {
             return false;
         }
+        else {
+            // there are at least two digits that are the same
+            // now check if they are not contained in a greater group
+            if(nth(pwd,5) == nth(pwd, 4) &&
+                nth(pwd, 4) != nth(pwd, 3)) {
+                return true;
+            }
+            if(nth(pwd, 5) != nth(pwd, 4) &&
+                nth(pwd,4) == nth(pwd, 3) &&
+                nth(pwd, 3) != nth(pwd, 2))  {
+                return true;
+            }
+            if(nth(pwd, 4) != nth(pwd, 3) &&
+                nth(pwd,3) == nth(pwd, 2) &&
+                nth(pwd, 2) != nth(pwd, 1))  {
+                return true;
+            }
+            if(nth(pwd, 3) != nth(pwd, 2) &&
+                nth(pwd,2) == nth(pwd, 1) &&
+                nth(pwd, 1) != nth(pwd, 0))  {
+                return true;
+            }
+            if(nth(pwd, 2) != nth(pwd, 1) &&
+                nth(pwd,1) == nth(pwd, 0))  {
+                return true;
+            }
+        }
 
-        return true;
+        return false;
     }
 
     /**

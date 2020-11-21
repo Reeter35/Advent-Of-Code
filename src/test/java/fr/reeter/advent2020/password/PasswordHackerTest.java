@@ -20,7 +20,7 @@ public class PasswordHackerTest {
     @Test
     void testIsValid() {
         int pwd = 111111;
-        assertThat(hacker.isValid(pwd)).isTrue();
+        assertThat(hacker.isValid(pwd)).isFalse();
 
         pwd = 223450;
         assertThat(hacker.isValid(pwd)).isFalse();
@@ -30,5 +30,14 @@ public class PasswordHackerTest {
 
         pwd = 766661;
         assertThat(hacker.isValid(pwd)).isFalse();
+
+        pwd = 112233;
+        assertThat(hacker.isValid(pwd)).isTrue();
+
+        pwd = 123444;
+        assertThat(hacker.isValid(pwd)).isFalse();
+
+        pwd = 111122;
+        assertThat(hacker.isValid(pwd)).isTrue();
     }
 }

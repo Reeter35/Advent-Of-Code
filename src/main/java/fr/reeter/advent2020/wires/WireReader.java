@@ -66,7 +66,7 @@ public class WireReader {
 
             point = new Point(point.x+offsetX*length, point.y+offsetY*length);
             wire.add(point);
-            logger.info("Add vertex: " + point);
+            logger.debug("Add vertex: " + point);
 
         }
 
