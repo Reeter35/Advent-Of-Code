@@ -2,6 +2,7 @@ package fr.reeter.advent2020;
 
 import fr.reeter.advent2020.fuel.FuelCalculator;
 import fr.reeter.advent2020.intcode.IntCodeComputer;
+import fr.reeter.advent2020.intcode.IntCodeRunner;
 import fr.reeter.advent2020.modules.ModulesParser;
 import fr.reeter.advent2020.password.PasswordHacker;
 import fr.reeter.advent2020.wires.WireReader;
@@ -26,13 +27,13 @@ public class Runner implements ApplicationRunner {
     @Autowired
     private FuelCalculator fuelCalculator;
 
-    //@Autowired
-    //private IntCodeRunner intCodeRunner;
+    @Autowired
+    private IntCodeRunner intCodeRunner;
 
     @Autowired
     private IntCodeComputer computer;
 
-    @Autowired
+    /*@Autowired
     private ModulesParser modules;
 
     @Autowired
@@ -42,14 +43,15 @@ public class Runner implements ApplicationRunner {
     private PasswordHacker hacker;
 
     @Autowired
-    private WiresIntersectionFinder intersectionFinder;
+    private WiresIntersectionFinder intersectionFinder;*/
 
     @Override
     public void run(final ApplicationArguments args) throws Exception {
         logger.info("Runnning the application...");
 
 
-        logger.info("Fuel mass to take: " + fuelCalculator.fuelForAllModules(modules.getModulesAsArray()));
+        // Day 1
+        //logger.info("Fuel mass to take: " + fuelCalculator.fuelForAllModules(modules.getModulesAsArray()));
 
 
         // Day 2;
@@ -68,8 +70,10 @@ public class Runner implements ApplicationRunner {
         logger.info("Minimal number of steps: " + intersectionFinder.getMinimalSteps(wires.get(0), wires.get(1)));*/
 
         // Day 4
-        List<String> passwords = hacker.findAllPasswords(273025, 767253);
-        logger.info("Number of available passwords: " + passwords.size());
+        //List<String> passwords = hacker.findAllPasswords(273025, 767253);
+        //logger.info("Number of available passwords: " + passwords.size());
 
+        // Day 5
+        logger.info("IntCode computer result: " + computer.run());
     }
 }

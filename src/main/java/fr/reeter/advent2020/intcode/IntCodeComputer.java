@@ -33,6 +33,15 @@ public class IntCodeComputer {
     }
 
     /**
+     * Runs the computer once
+     * @return
+     */
+    public int run() {
+        runner.init(initalIntCodes);
+        return runner.run();
+    }
+
+    /**
      * Find the noun and verb to get given output
      * @param lookupOutput the output to reach
      * @return String a couple Noun,Verb
