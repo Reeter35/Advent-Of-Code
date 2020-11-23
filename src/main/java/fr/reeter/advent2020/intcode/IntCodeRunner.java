@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * A class that runs a computer base on Int Code
@@ -40,6 +41,7 @@ public class IntCodeRunner {
         while(!exitCommand && codeIndex<intCodes.length) {
             logger.info("Reading command at index: " + codeIndex);
             int command = intCodes[codeIndex];
+
             // OpCode is contained in the two last digits
             int opCode = command%100;
 
@@ -69,6 +71,46 @@ public class IntCodeRunner {
                     logger.info("OUTPUT comamnd received");
                     output(intCodes[codeIndex+1]);
                     codeIndex+=2;
+                    break;
+                case 5:
+                    logger.info("JUMP IF TRUE comamnd received");
+                    if(getParam(intCodes[codeIndex+1], paramMode1) != 0) {
+                        codeIndex = getParam(intCodes[codeIndex+2], paramMode2);
+                    }
+                    else{
+                        codeIndex += 3;
+                    }
+                    break;
+                case 6:
+                    logger.info("JUMP IF FALSE comamnd received");
+                    if(getParam(intCodes[codeIndex+1], paramMode1) == 0) {
+                        codeIndex = getParam(intCodes[codeIndex+2], paramMode2);
+                    }
+                    else{
+                        codeIndex += 3;
+                    }
+                    break;
+                case 7:
+                    logger.info("LESS THAN comamnd received");
+
+                    if(getParam(intCodes[codeIndex+1], paramMode1) < getParam(intCodes[codeIndex+2], paramMode2)) {
+                        intCodes[intCodes[codeIndex+3]] = 1;
+                    }
+                    else {
+                        intCodes[intCodes[codeIndex+3]] = 0;
+                    }
+                    codeIndex += 4;
+                    break;
+                case 8:
+                    logger.info("EQUALS command received");
+
+                    if(getParam(intCodes[codeIndex+1], paramMode1) == getParam(intCodes[codeIndex+2], paramMode2)) {
+                        intCodes[intCodes[codeIndex+3]] = 1;
+                    }
+                    else {
+                        intCodes[intCodes[codeIndex+3]] = 0;
+                    }
+                    codeIndex += 4;
                     break;
                 case 99:
                     logger.info("EXIT command received");
@@ -106,7 +148,7 @@ public class IntCodeRunner {
      * @param resultIdx
      */
     private void add(final int op1, final int op2, final int resultIdx) {
-        logger.info("   add: " + op1 + " + " + op2 + " ==> " + resultIdx);
+        logger.debug("   add: " + op1 + " + " + op2 + " ==> " + resultIdx);
         intCodes[resultIdx] = op1 + op2;
         logger.debug("Result written at index: " + resultIdx + " : " + intCodes[resultIdx]);
     }
@@ -118,7 +160,7 @@ public class IntCodeRunner {
      * @param resultIdx
      */
     private void mult(final int op1, final int op2, final int resultIdx) {
-        logger.info("   mult: " + op1 + " x " + op2 + " ==> " + resultIdx);
+        logger.debug("   mult: " + op1 + " x " + op2 + " ==> " + resultIdx);
         intCodes[resultIdx] = op1 * op2;
         logger.debug("Result written at index: " + resultIdx + " : " + intCodes[resultIdx]);
     }
@@ -128,14 +170,13 @@ public class IntCodeRunner {
      * @param index
      */
     private void input(final int index) {
-        String input = System.console().readLine();
+        Scanner inputScanner = new Scanner(System.in);
+        int input = inputScanner.nextInt();
         logger.info("   store: " + input + " to position " + index);
-        intCodes[index] = Integer.parseInt(input);
-
+        intCodes[index] = input;
     }
 
     private void output(final int index) {
-        System.out.println(intCodes[index]);
-
+        System.out.println("  ==> TEST OUTPUT: " + intCodes[index]);
     }
 }

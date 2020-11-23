@@ -23,4 +23,12 @@ public class IntCodeRunnerTest {
         runner.init(testCodes);
         assertThat(runner.run()).isEqualTo(1002);
     }
+
+    @Test
+    public void testDay5() {
+        int[] testCodes = {3,9,8,9,10,9,4,9,99,-1,8};
+        runner.init(testCodes);
+        assertThat(runner.run()).isEqualTo(3);
+
+    }
 }
