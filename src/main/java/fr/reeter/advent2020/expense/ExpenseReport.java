@@ -41,9 +41,12 @@ public class ExpenseReport {
             int expInt = Integer.parseInt(exp);
             for(String exp2: expenses) {
                 int exp2Int = Integer.parseInt(exp2);
-                if(expInt+exp2Int == 2020) {
-                    logger.info("Found: " + exp + " / " + exp2);
-                    return expInt*exp2Int;
+                for(String exp3: expenses) {
+                    int exp3Int = Integer.parseInt(exp3);
+                    if(expInt+exp2Int+exp3Int == 2020) {
+                        logger.info("Found: " + exp + " / " + exp2 + " / " + exp3);
+                        return expInt*exp2Int*exp3Int;
+                    }
                 }
             }
         }
