@@ -10,4 +10,6 @@ public class AdventOfCode2020Application {
 		SpringApplication.run(AdventOfCode2020Application.class, args);
 	}
 
+
+
 }
